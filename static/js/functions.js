@@ -4,7 +4,7 @@ function httpRequestMovieId(url) {
         type: "get",
         data: 'json',
         success: function(response) {
-            $("#movieid").html(response);
+            $("#movies-by-id").html(response);
         },
         error: function(e) {
             console.log(e);
@@ -56,7 +56,7 @@ function httpRequestGraph(url, layout) {
 
 function changeMoviesById() {
     const movieId = document.getElementById('movieid').value;
-    httpRequestErrors('/movies/' + movieId);
+    httpRequestMovieId('/movies/' + movieId);
 }
 
 function changeSexe() {

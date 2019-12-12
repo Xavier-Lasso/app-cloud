@@ -4,10 +4,10 @@ from mongo_requests import S1, S2, C2
 
 application = Flask("app_cloud_application")
 
-@application.route("/app", methods=["GET"])
+@application.route("/user", methods=["GET"])
 def index():
     if(request.method == "GET"):
-        return render_template("user.html", movies=movies)
+        return render_template("user.html")
     return "App Cloud: Project"
 
     
@@ -32,9 +32,8 @@ def getEventsAllJobs():
 """
 @application.route("/movies/<id>", methods=["GET"])
 def getMoviesId(id):
-    number = int(request.args["q"])
-    movies = eventsOneJob(job, number)
-    return render_template("s1.html", events=events)
+    movies = S1(int(id))
+    return render_template("s1.html", movies=movies)
 """
 @application.route("/graphs/weekly", methods=["GET"])
 def graphWeeklyAllWorkers():
