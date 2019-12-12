@@ -1,6 +1,6 @@
 from flask import Flask, request, json, jsonify, make_response, render_template, Response
 from bson import json_util
-from mongo_requests import S1, S2, C2
+from mongo_requests import S1, S2, C2, D2
 
 application = Flask("app_cloud_application")
 
@@ -58,7 +58,8 @@ def graphMonthlyOneWorker(worker):
 
 @application.route("/analyst/")
 def analyst():
-    return render_template("analyst.html")
+    resultsD2 = D2()
+    return render_template("analyst.html", resultsD2=resultsD2)
 
 @application.route("/analyst/genre/<userSex>", methods=["GET"])
 def getTopGenre(userSex):

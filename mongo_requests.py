@@ -117,3 +117,32 @@ def D1():
 	}
 
 """
+
+
+def D2():
+    mapFunction = Code(
+        "function () {"
+        "   if(this.ratings.length > 1000){"
+        "       sum = 0;"
+        "       for(i=0; i<this.ratings.length; i++){"
+        "           sum += parseInt(this.ratings[i].value);"
+        "       }"
+        "       avg = sum / this.ratings.length;"
+        "       emit(this.year, {\"avg\" : avg, \"movieid\": this.movieid});"
+        "   }"
+        "}")
+
+    reduceFunction = Code(
+        "function (key, values) {"
+        "   avg = values[0].avg; movieid = values[0].movieid;"
+        "   for(i=0; i< values.length; i++){"
+        "       if(values[i].avg > avg){"
+        "           avg = values[i].avg;"
+        "           movieid = values[i].movieid;"
+        "       }"
+        "   }"
+        "return {\"avg\" : avg, \"movieid\": this.movieid};"
+        "}")
+
+    res = db.movies.map_reduce(mapFunction, reduceFunction, "myresults").find()
+    return res

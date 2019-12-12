@@ -57,17 +57,18 @@
 
 
     <h2>Pour chaque année de production, le film qui a reçu la meilleure note moyenne, parmi les films ayant plus de 1000 notes</h2>
+
     <div class="d2 caption">
         <div class="year caption">Année de production</div>
         <div class="film caption">Film ayant la meilleure note moyenne</div>
         <div class="avg caption">Note moyenne</div>
     </div>
     <ul class="list">
-        {% for movie in movies %}
+        {% for result in resultsD2 %}
         <li class="error-list">
-            <div class="year">{{movie.movieid}}</div>
-            <div class="film">{{movie.year}}</div>
-            <div class="avg">Note moyenne</div>
+            <div class="year">{{result._id}}</div>
+            <div class="film">{{result.value.movieid}}</div>
+            <div class="avg">{{result.value.avg}}</div>
         </li>
         {% endfor %}
     </ul>
