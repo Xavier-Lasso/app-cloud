@@ -21,7 +21,7 @@ h2 {
   border-bottom: 1px solid black;
 }
 
-.worker-list, .error-list, .event-list {
+.worker-list, .error-list, .event-list, .genre-list {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -35,12 +35,13 @@ h2 {
 
   .worker-list > .worker, .worker-list > .last-job, .worker-list > .last-job-type, .worker-list > .last-job-date, .worker-list > .total-job,
   .error-list > .worker, .error-list > .job, .error-list > .job-type, .error-list > .date, .error-list > .error-message,
-  .event-list > .job, .event-list > .job-type, .event-list > .worker, .event-list > .date, .event-list > .status {
+  .event-list > .job, .event-list > .job-type, .event-list > .worker, .event-list > .date, .event-list > .statu,
+  .genre-list > .genre, .genre-list > .genre-ratings {
     flex-grow: 1;
     max-width: 15%;
   }
 
-  .worker-list > .caption, .error-list > .caption, .event-list > .caption {
+  .worker-list > .caption, .error-list > .caption, .event-list > .caption, .genre-list > .caption {
     font-weight: bold;
     font-size:   16px;
   }

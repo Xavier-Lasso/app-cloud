@@ -1,6 +1,6 @@
 from flask import Flask, request, json, jsonify, make_response, render_template, Response
 from bson import json_util
-from mongo_requests import S1, S2
+from mongo_requests import S1, S2, C2
 
 application = Flask("app_cloud_application")
 
@@ -10,6 +10,8 @@ def index():
         movies = S1(1672052)
         return render_template("index.html", movies=movies)
     return "App Cloud: Project"
+
+    
 """
 @application.route("/errors", methods=["GET"])
 def getAllErrors():
@@ -55,5 +57,17 @@ def graphMonthlyOneWorker(worker):
     graphJSONMonths = graphMonthlyExecutionTimeAverageOneWorker(worker)
     return Response(graphJSONMonths, mimetype='application/json; charset=utf-8')
 """
+
+@application.route("/analyst/")
+def analyst():
+    return render_template("analyst.html")
+
+@application.route("/analyst/genre/<userSex>", methods=["GET"])
+def getTopGenre(userSex):
+    topNb = int(request.args["q"])
+    genres = C2(userSex, topNb)
+    return render_template("c2.html", genres=genres)
+
+
 if __name__ ==  "__main__":
     application.run(host="0.0.0.0", port=80)

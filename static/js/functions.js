@@ -12,6 +12,20 @@ function httpRequestMovieId(url) {
     });
 }
 
+function httpRequestGenreId(url) {
+    $.ajax({
+        url: url,
+        type: "get",
+        data: 'json',
+        success: function(response) {
+            $("#c2").html(response);
+        },
+        error: function(e) {
+            console.log(e);
+        }
+    });
+}
+
 function httpRequestEvents(url) {
     $.ajax({
         url: url,
@@ -43,6 +57,24 @@ function httpRequestGraph(url, layout) {
 function changeMoviesById() {
     const movieId = document.getElementById('movieid').value;
     httpRequestErrors('/movies/' + movieId);
+}
+
+function changeSexe() {
+    const userSex = document.getElementById('select-sexe').value;
+    const topNumber = document.getElementById('topNumber').value;
+    if(userSex && topNumber)
+    {
+        httpRequestGenreId('/analyst/genre/' + userSex + '?q=' + topNumber);
+    }
+}
+
+function changeTopNumber() {
+    const userSex = document.getElementById('select-sexe').value;
+    const topNumber = document.getElementById('topNumber').value;
+    if(userSex && topNumber)
+    {
+        httpRequestGenreId('/analyst/genre/' + userSex + '?q=' + topNumber);
+    }
 }
 
 function changeEvents() {

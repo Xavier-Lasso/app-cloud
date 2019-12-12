@@ -59,13 +59,13 @@ def C1():
     "}")
     return res
     
-def C2():
+def C2(userSex, topNb):
     res = db.movies.aggregate([
         {"$unwind": "$ratings"}, 
-        {"$match": {"ratings.user.u_gender" : "F"}}, 
+        {"$match": {"ratings.user.u_gender" : userSex}}, 
         {"$group": {"_id":"$genre", "tot":{"$sum":1}}}, 
         {"$sort": {"tot":-1}}, 
-        {"$limit": 3}
+        {"$limit": topNb}
     ]);
     return res
 """
