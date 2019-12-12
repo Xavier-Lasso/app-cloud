@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Cloud Project</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+    <script type="text/javascript" src="{{url_for('static', filename='js/functions.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+    <h1>MovieLens</h1>
+    <br />
+    <h2>Top n des genres de films les plus populaires (les plus vus) auprès des femmes/hommes</h2>
+    <div id="c2-params">
+        <div>
+            Top :
+            <input id="topNumber" type="number" onchange="changeTopNumber()" />
+        </div>
+        <br />
+        <div>
+            Sexe :
+            <select id="select-sexe" onchange="changeSexe()">
+                <option value="F">Femmes</option>
+                <option value="M">Hommes</option>
+            </select>
+        </div>
+    </div>
+    <br />
+    <div id="c2"></div>
+
+
+    <br />
+    <br />
+
+    <!-- RESTE A FAIRE -->
+    <h2>L'acteur le plus populaire (le plus d’apparition dans les films) par tranche d'âge d’utilisateurs</h2>
+    <div class="d1 caption">
+        <div class="worker caption">Tranche d'âge</div>
+        <div class="job caption">Acteur le plus populaire</div>
+    </div>
+    <ul class="list">
+        {% for movie in movies %}
+        <li class="error-list">
+            <div class="worker">{{movie.movieid}}</div>
+            <div class="job">{{movie.year}}</div>
+        </li>
+        {% endfor %}
+    </ul>
+    <!---->
+
+
+    <br />
+    <br />
+
+
+    <h2>Pour chaque année de production, le film qui a reçu la meilleure note moyenne, parmi les films ayant plus de 1000 notes</h2>
+    <div class="d2 caption">
+        <div class="year caption">Année de production</div>
+        <div class="film caption">Film ayant la meilleure note moyenne</div>
+        <div class="avg caption">Note moyenne</div>
+    </div>
+    <ul class="list">
+        {% for movie in movies %}
+        <li class="error-list">
+            <div class="year">{{movie.movieid}}</div>
+            <div class="film">{{movie.year}}</div>
+            <div class="avg">Note moyenne</div>
+        </li>
+        {% endfor %}
+    </ul>
+
+
+
+</body>
+
+</html>
