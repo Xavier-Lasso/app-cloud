@@ -7,8 +7,7 @@ application = Flask("app_cloud_application")
 @application.route("/app", methods=["GET"])
 def index():
     if(request.method == "GET"):
-        movies = S1(1672052)
-        return render_template("index.html", movies=movies)
+        return render_template("user.html", movies=movies)
     return "App Cloud: Project"
 
     
@@ -35,7 +34,7 @@ def getEventsAllJobs():
 def getMoviesId(id):
     number = int(request.args["q"])
     movies = eventsOneJob(job, number)
-    return render_template("events.html", events=events)
+    return render_template("s1.html", events=events)
 """
 @application.route("/graphs/weekly", methods=["GET"])
 def graphWeeklyAllWorkers():
