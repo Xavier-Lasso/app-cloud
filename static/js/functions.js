@@ -41,37 +41,37 @@ function httpRequestGenreId(url) {
 }
 
 function changeMoviesById() {
-    const movieId = document.getElementById('input-movieid').value;
-    httpRequestMovieId('/user/movies/' + movieId);
+    const movieId = document.getElementById('input-movieid') ? document.getElementById('input-movieid').value : null;
+    if(movieId) {
+        httpRequestMovieId('/user/movies/' + movieId);
+    }
 }
 
 function changeYear() {
-    const year = document.getElementById('input-year').value;
-    if(year)
-    {
+    const year = document.getElementById('input-year') ? document.getElementById('input-year').value : null;
+    if(year) {
         httpRequestMovieYear('/user/movies/year/' + year);
     }
 }
 
 function changeSexe() {
-    const userSex = document.getElementById('select-sexe').value;
-    const topNumber = document.getElementById('topNumber').value;
-    if(userSex && topNumber)
-    {
+    const userSex = document.getElementById('select-sexe') ? document.getElementById('select-sexe').value : null;
+    const topNumber = document.getElementById('topNumber') ? document.getElementById('topNumber').value : null;
+    if(userSex && topNumber) {
         httpRequestGenreId('/analyst/genre/' + userSex + '?q=' + topNumber);
     }
 }
 
 function changeTopNumber() {
-    const userSex = document.getElementById('select-sexe').value;
-    const topNumber = document.getElementById('topNumber').value;
-    if(userSex && topNumber)
-    {
+    const userSex = document.getElementById('select-sexe') ? document.getElementById('select-sexe').value : null;
+    const topNumber = document.getElementById('topNumber') ? document.getElementById('topNumber').value : null;
+    if(userSex && topNumber) {
         httpRequestGenreId('/analyst/genre/' + userSex + '?q=' + topNumber);
     }
 }
 
 window.onload = function() {
-    httpRequestMovieId('/user/movies/1');
-    httpRequestMovieYear('/user/movies/year/5');
+    changeMoviesById();
+    changeYear();
+    changeSexe();
 };

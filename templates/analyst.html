@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
     <script type="text/javascript" src="{{url_for('static', filename='js/functions.js')}}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 <body>
@@ -17,7 +16,7 @@
     <div id="c2-params">
         <div>
             Top :
-            <input id="topNumber" type="number" onchange="changeTopNumber()" />
+            <input id="topNumber" type="number" value="5" onchange="changeTopNumber()" />
         </div>
         <br />
         <div>
@@ -60,12 +59,12 @@
 
     <div class="d2 caption">
         <div class="year caption">Année de production</div>
-        <div class="film caption">Film ayant la meilleure note moyenne</div>
+        <div class="film caption">ID du film</div>
         <div class="avg caption">Note moyenne</div>
     </div>
     <ul class="list">
         {% for result in resultsD2 %}
-        <li class="error-list">
+        <li class="d2">
             <div class="year">{{result._id}}</div>
             <div class="film">{{result.value.movieid}}</div>
             <div class="avg">{{result.value.avg}}</div>
