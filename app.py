@@ -1,14 +1,12 @@
-from flask import Flask, request, json, jsonify, make_response, render_template, Response
-from bson import json_util
-from mongo_requests import S1, S2, C2, D2
+from flask import Flask, request, render_template
+from mongo_requests import S1, S2, C1, C2, D2
 
 application = Flask("app_cloud_application")
 
 @application.route("/user", methods=["GET"])
 def user():
-    if(request.method == "GET"):
-        return render_template("user.html")
-    return "App Cloud: Project"
+    genres = C1()
+    return render_template("user.html", genres=genres)
 
 @application.route("/user/movies/<id>", methods=["GET"])
 def getMoviesId(id):

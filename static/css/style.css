@@ -34,7 +34,7 @@ h2 {
   }
 
   .movie-list > .movieid, .movie-list > .year, .movie-list > .english, .movie-list > .country, .movie-list > .running-time, .movie-list > .genre,
-  .genre-list > .genre, .genre-list > .genre-ratings,
+  .genre-list > .genre, .genre-list > .movieid, .genre-list > .moy, .genre-list > .genre-ratings,
   .d2 > .year, .d2 > .film, .d2 > .avg {
     flex-grow: 1;
     max-width: 15%;

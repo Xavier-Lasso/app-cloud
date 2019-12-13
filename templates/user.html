@@ -30,5 +30,23 @@
   </div>
   <br/>
   <div id ="s2"></div>
+  <br/>
+  <h2>Le film le mieux noté par genre</h2>
+  <br/>
+  <div class="genre-list caption">
+    <div class="genre caption">Genre</div>
+    <div class="movieid caption">ID du film</div>
+    <div class="moy caption">Moyenne</div>
+  </div>
+  <ul class="list">
+      {% for genre in genres %}
+      <li class="genre-list">
+          <div class="genre">{{genre._id}}</div>
+          <div class="movieid">{{genre.movieid}}</div>
+          <div class="moy">{{genre.moy}}</div>
+      </li>
+      {% endfor %}
+  </ul>
+  </div>
 </body>
 </html>

@@ -31,32 +31,9 @@ def C1():
         {"$unwind": "$ratings"}, 
         {"$group": {"_id": {"movieid": "$movieid", "genre": "$genre"}, "moy": {"$avg": { "$toInt": "$ratings.value" }}, "tot": {"$sum":1}}}, 
         {"$match": {"tot": {"$gt":1000}}}, 
-        {"$group": {"_id": "$_id.genre" , "top": {"$max": "$moy"}}}
+        {"$sort": {"moy": -1}}, 
+        {"$group": {"_id": "$_id.genre" , "movieid": {"$first": "$_id.movieid"}, "moy": {"$first": "$moy"}}}
     ])
-    
-    mapFunction = Code(
-        "function () {"
-        "   if(this.ratings.length > 1000){"
-        "       sum = 0;"
-        "       for(i=0; i<this.ratings.length; i++){"
-        "           sum += parseInt(this.ratings[i].value);"
-        "       }"
-        "       avg = sum / this.ratings.length;"
-        "       emit(this.genre, {\"avg\" : avg, \"movieid\": this.movieid});"
-        "   }"
-        "}")
-        
-    reduceFunction = Code(
-    "function (key, values) {"
-    "   avg = values[0].avg; movieid = values[0].movieid;"
-    "   for(i=0; i< values.length; i++){"
-    "       if(values[i].avg > avg){"
-    "           avg = values[i].avg;"
-    "           movieid = values[i].movieid;"
-    "       }"
-    "   }"
-    "   return {\"avg\" : avg, \"movieid\": this.movieid};"
-    "}")
     return res
     
 def C2(userSex, topNb):
@@ -66,7 +43,7 @@ def C2(userSex, topNb):
         {"$group": {"_id":"$genre", "tot":{"$sum":1}}}, 
         {"$sort": {"tot":-1}}, 
         {"$limit": topNb}
-    ]);
+    ])
     return res
 """
 def D1():
