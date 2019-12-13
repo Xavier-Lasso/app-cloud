@@ -5,58 +5,22 @@ from mongo_requests import S1, S2, C2, D2
 application = Flask("app_cloud_application")
 
 @application.route("/user", methods=["GET"])
-def index():
+def user():
     if(request.method == "GET"):
         return render_template("user.html")
     return "App Cloud: Project"
 
-    
-"""
-@application.route("/errors", methods=["GET"])
-def getAllErrors():
-    number = int(request.args["q"])
-    errs = errorsAllWorkers(number)
-    return render_template("errors.html", errs=errs)
-
-@application.route("/errors/<worker>", methods=["GET"])
-def getErrorsOneWorker(worker):
-    number = int(request.args["q"])
-    errs = errorsOneWorker(worker, number)
-    return render_template("errors.html", errs=errs)
-
-@application.route("/events", methods=["GET"])
-def getEventsAllJobs():
-    number = int(request.args["q"])
-    events = eventsAllJobs(number)
-    return render_template("events.html", events=events)
-"""
-@application.route("/movies/<id>", methods=["GET"])
+@application.route("/user/movies/<id>", methods=["GET"])
 def getMoviesId(id):
     movies = S1(int(id))
-    return render_template("s1.html", movies=movies)
-"""
-@application.route("/graphs/weekly", methods=["GET"])
-def graphWeeklyAllWorkers():
-    graphJSONWeeks = graphWeeklyExecutionTimeAverageAllWorkers()
-    return Response(graphJSONWeeks, mimetype='application/json; charset=utf-8')
+    return render_template("movies.html", movies=movies)
 
-@application.route("/graphs/monthly", methods=["GET"])
-def graphMonthlyAllWorkers():
-    graphJSONMonths = graphMonthlyExecutionTimeAverageAllWorkers()
-    return Response(graphJSONMonths, mimetype='application/json; charset=utf-8')
+@application.route("/user/movies/year/<year>", methods=["GET"])
+def getMoviesYear(year):
+    movies = S2(int(year))
+    return render_template("movies.html", movies=movies)
 
-@application.route("/graphs/weekly/<worker>", methods=["GET"])
-def graphWeeklyOneWorker(worker):
-    graphJSONMonths = graphWeeklyExecutionTimeAverageOneWorker(worker)
-    return Response(graphJSONMonths, mimetype='application/json; charset=utf-8')
-
-@application.route("/graphs/monthly/<worker>", methods=["GET"])
-def graphMonthlyOneWorker(worker):
-    graphJSONMonths = graphMonthlyExecutionTimeAverageOneWorker(worker)
-    return Response(graphJSONMonths, mimetype='application/json; charset=utf-8')
-"""
-
-@application.route("/analyst/")
+@application.route("/analyst")
 def analyst():
     resultsD2 = D2()
     return render_template("analyst.html", resultsD2=resultsD2)

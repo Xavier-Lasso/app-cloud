@@ -10,16 +10,25 @@
 <body>
   <h1>MovieLens</h1>
   <br/>
-  <h2>Movies by ID</h2>
-  <div id="movie-id-params">
+  <h2>Films par ID</h2>
+  <div id="s1-params">
     <div>
-      Film ID:
-      <input id="movieid" type="text" oninput="changeMoviesById()"/>
+      ID du film :
+      <input id="input-movieid" type="text" oninput="changeMoviesById()"/>
     </div>
     <br/>
   </div>
   <br/>
-  <div id ="movies-by-id"></div>
+  <div id ="s1"></div>
   <br/>
+  <h2>Films par année</h2>
+  <div id="s2-params">
+    <div>
+        Année :
+        <input id="input-year" type="number" onchange="changeYear()"/>
+    </div>
+  </div>
+  <br/>
+  <div id ="s2"></div>
 </body>
 </html>

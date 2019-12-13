@@ -1,0 +1,20 @@
+<div class="movie-list caption">
+    <div class="movieid caption">ID</div>
+    <div class="year caption">Year</div>
+    <div class="english caption">English</div>
+    <div class="country caption">Country</div>
+    <div class="running-time caption">Running Time</div>
+    <div class="genre caption">Genre</div>
+</div>
+ <ul class="list">
+    {% for movie in movies %}
+    <li class="movie-list">
+        <div class="movieid">{{movie.movieid}}</div>
+        <div class="year">{{movie.year}}</div>
+        <div class="english">{{movie.is_english}}</div>
+        <div class="country">{{movie.country}}</div>
+        <div class="running-time">{{movie.running_time}}</div>
+        <div class="genre">{{movie.genre}}</div>
+    </li>
+    {% endfor %}
+</ul>

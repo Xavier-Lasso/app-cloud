@@ -22,8 +22,8 @@ def S1(movieid):
     res = db.movies.find({"movieid": movieid}, {"movieid": 1, "year": 1, "is_english": 1, "country": 1, "running_time": 1, "genre": 1})
     return res
 
-def S2():
-    res = db.movies.find({"year":1}, {year:1})
+def S2(year):
+    res = db.movies.find({"year": year}, {"movieid": 1, "year": 1, "is_english": 1, "country": 1, "running_time": 1, "genre": 1})
     return res
 
 def C1():
