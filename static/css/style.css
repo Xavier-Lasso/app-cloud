@@ -7,7 +7,7 @@ h2 {
   text-align: center;
 }
 
-#errors-params, #events-params, #graph-params {
+#s1-params, #s2-params, #c1-params {
   margin-left: 2%;
 }
 
@@ -21,7 +21,7 @@ h2 {
   border-bottom: 1px solid black;
 }
 
-.worker-list, .error-list, .event-list, .genre-list {
+.movie-list, .genre-list {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -33,15 +33,13 @@ h2 {
     padding: 6px 0 0 0;
   }
 
-  .worker-list > .worker, .worker-list > .last-job, .worker-list > .last-job-type, .worker-list > .last-job-date, .worker-list > .total-job,
-  .error-list > .worker, .error-list > .job, .error-list > .job-type, .error-list > .date, .error-list > .error-message,
-  .event-list > .job, .event-list > .job-type, .event-list > .worker, .event-list > .date, .event-list > .statu,
+  .movie-list > .movieid, .movie-list > .year, .movie-list > .english, .movie-list > .country, .movie-list > .running-time, .movie-list > .genre,
   .genre-list > .genre, .genre-list > .genre-ratings {
     flex-grow: 1;
     max-width: 15%;
   }
 
-  .worker-list > .caption, .error-list > .caption, .event-list > .caption, .genre-list > .caption {
+  .movie-list > .caption, .genre-list > .caption {
     font-weight: bold;
     font-size:   16px;
   }
