@@ -1,3 +1,9 @@
+body{
+    background: #eee url('https://i.imgur.com/eeQeRmk.png');
+    color: #585858;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
 h1 {
   text-align: center;
   text-decoration: underline;
@@ -19,6 +25,7 @@ h2 {
   max-height: 200px;
   overflow-y: scroll;
   border-bottom: 1px solid black;
+  background-color: #FFFFFF;
 }
 
 .movie-list, .genre-list, .d2, .d1 {
@@ -31,6 +38,7 @@ h2 {
     border-left: 1px solid black;
     border-right: 1px solid black;
     padding: 6px 0 0 0;
+    background-color: #FFFFFF;
   }
 
   .movie-list > .movieid, .movie-list > .year, .movie-list > .english, .movie-list > .country, .movie-list > .running-time, .movie-list > .genre,
@@ -38,9 +46,11 @@ h2 {
   .d2 > .year, .d2 > .film, .d2 > .avg, .d1 > .age, .d1 > .actor {
     flex-grow: 1;
     max-width: 15%;
+    background-color: #FFFFFF;
   }
 
   .movie-list > .caption, .genre-list > .caption, .d2 > .caption, .d1 > .caption {
     font-weight: bold;
     font-size:   16px;
+    background-color: #FFFFFF;
   }
