@@ -22,8 +22,8 @@ def getMoviesYear(year):
 def analyst():
     d2 = D2()
     d1 = D1()
-    resultsD2 = [d2, d1]
-    return render_template("analyst.html", resultsD2=resultsD2)
+    results = [d2, d1]
+    return render_template("analyst.html", results=results)
 
 @application.route("/analyst/genre/<userSex>", methods=["GET"])
 def getTopGenre(userSex):
