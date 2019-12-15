@@ -45,7 +45,7 @@ def C2(userSex, topNb):
         {"$limit": topNb}
     ])
     return res
-"""
+
 def D1():
     res = db.movies.aggregate([
 	    {"$unwind": "$ratings"},
@@ -55,45 +55,45 @@ def D1():
 	        "range": {"$concat": [
 	            {"$cond": [{"$lte": ["$age",0]}, "Unknown", ""]}, 
 	            {"$cond": [{"$and": [ {"$gt":["$age", 0 ]}, {"$lt": ["$age", 18]}]}, "Under 18", ""]},
-	            {$cond: [{"$and": [{"$gte":["$age",18]}, {"$lt":["$age", 25]}]}, "18 - 24", ""]},
-	            {$cond: [{"$and": [{"$gte":["$age",25]}, {"$lt":["$age", 35]}]}, "25 - 34", ""]},
-	            {$cond: [{"$and": [{"$gte":["$age",35]}, {"$lt":["$age", 51]}]}, "35 - 50", ""]},
-	            {$cond: [{"$and": [{"$gte":["$age",51]}, {"$lt":["$age", 66]}]}, "51 - 65", ""]},
-	            {$cond: [{"$gte": ["$age", 66]}, "Over 65", ""]}
+	            {"$cond": [{"$and": [{"$gte":["$age",18]}, {"$lt":["$age", 25]}]}, "18 - 24", ""]},
+	            {"$cond": [{"$and": [{"$gte":["$age",25]}, {"$lt":["$age", 35]}]}, "25 - 34", ""]},
+	            {"$cond": [{"$and": [{"$gte":["$age",35]}, {"$lt":["$age", 51]}]}, "35 - 50", ""]},
+	            {"$cond": [{"$and": [{"$gte":["$age",51]}, {"$lt":["$age", 66]}]}, "51 - 65", ""]},
+	            {"$cond": [{"$gte": ["$age", 66]}, "Over 65", ""]}
 	          ]}  
 	        }    
 	    },
 	    {"$group": {"_id": {"movieid": "$movieid", "age": "$range"}, "count": {"$sum": 1}}}
 	])
-    
-    let tr_age_doc = {}
-	res.forEach(doc => {
-	    roles = db.roles.find({"movieid": doc._id.movieid}, {actor: 1});
-	    if(roles.hasNext()) {
-	    roles.forEach( role => {
-	    let tranche_age = doc._id.age
-	    let actorid = role.actor.actorid
-	    let count = doc.count
-	    if(tranche_age in tr_age_doc) {
-	        if(actorid in tr_age_doc[tranche_age]) {
-	            tr_age_doc[tranche_age][actorid] += count;
-	        } else {
-	            tr_age_doc[tranche_age][actorid] = count;
-	        }
-	} else { 
-	    tr_age_doc[tranche_age] = {};
-	    tr_age_doc[tranche_age][actorid] = count;
-	}
-	})
-	}
-	})
-	final_doc = {}
-	for (key in tr_age_doc) {
-	    let max = Object.keys(tr_age_doc[key]).reduce((a, b) => tr_age_doc[key][a] >tr_age_doc[key][b] ? a : b);
-	    final_doc[key] = max;
-	}
 
-"""
+    tr_age_doc = {}
+
+    i = 0
+    for val in res:
+        i+=1
+        if(i > 50):
+            break
+        roles = list(db.roles.find({"movieid": val['_id']['movieid']}, {'actor': 1}));
+        if(len(roles) > 0):
+            for doc in roles:
+                tranche_age = val['_id']['age']
+                actorid = doc['actor']['actorid']
+                count = val['count']
+                if(tranche_age in tr_age_doc):
+                    if(actorid in tr_age_doc[tranche_age]):
+                        tr_age_doc[tranche_age][actorid] += count
+                    else:
+                        tr_age_doc[tranche_age][actorid] = count
+                else:
+                    tr_age_doc[tranche_age] = {};
+                    tr_age_doc[tranche_age][actorid] = count;
+    
+    final_doc = {}
+    for tr_age in tr_age_doc:
+        maximum = max(tr_age_doc[tr_age], key = tr_age_doc[tr_age].get)
+        final_doc[tr_age] = maximum
+    
+    return final_doc
 
 
 def D2():

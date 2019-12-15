@@ -37,14 +37,14 @@
     <!-- RESTE A FAIRE -->
     <h2>L'acteur le plus populaire par tranche d'âge d’utilisateurs</h2>
     <div class="d1 caption">
-        <div class="worker caption">Tranche d'âge</div>
-        <div class="job caption">Acteur le plus populaire</div>
+        <div class="age caption">Tranche d'âge</div>
+        <div class="actor caption">Acteur le plus populaire</div>
     </div>
     <ul class="list">
-        {% for movie in movies %}
-        <li class="error-list">
-            <div class="worker">{{movie.movieid}}</div>
-            <div class="job">{{movie.year}}</div>
+        {% for result in resultsD2[1] %}
+        <li class="d1">
+            <div class="age">{{result}}</div>
+            <div class="actor">{{resultsD2[1][result]}}</div>
         </li>
         {% endfor %}
     </ul>
@@ -63,7 +63,7 @@
         <div class="avg caption">Note moyenne</div>
     </div>
     <ul class="list">
-        {% for result in resultsD2 %}
+        {% for result in resultsD2[0] %}
         <li class="d2">
             <div class="year">{{result._id}}</div>
             <div class="film">{{result.value.movieid}}</div>

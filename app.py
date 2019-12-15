@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-from mongo_requests import S1, S2, C1, C2, D2
+from mongo_requests import S1, S2, C1, C2, D2, D1
 
 application = Flask("app_cloud_application")
 
@@ -20,7 +20,9 @@ def getMoviesYear(year):
 
 @application.route("/analyst")
 def analyst():
-    resultsD2 = D2()
+    d2 = D2()
+    d1 = D1()
+    resultsD2 = [d2, d1]
     return render_template("analyst.html", resultsD2=resultsD2)
 
 @application.route("/analyst/genre/<userSex>", methods=["GET"])
@@ -28,7 +30,6 @@ def getTopGenre(userSex):
     topNb = int(request.args["q"])
     genres = C2(userSex, topNb)
     return render_template("c2.html", genres=genres)
-
 
 if __name__ ==  "__main__":
     application.run(host="0.0.0.0", port=80)

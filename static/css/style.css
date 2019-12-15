@@ -21,7 +21,7 @@ h2 {
   border-bottom: 1px solid black;
 }
 
-.movie-list, .genre-list, .d2 {
+.movie-list, .genre-list, .d2, .d1 {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -35,12 +35,12 @@ h2 {
 
   .movie-list > .movieid, .movie-list > .year, .movie-list > .english, .movie-list > .country, .movie-list > .running-time, .movie-list > .genre,
   .genre-list > .genre, .genre-list > .movieid, .genre-list > .moy, .genre-list > .genre-ratings,
-  .d2 > .year, .d2 > .film, .d2 > .avg {
+  .d2 > .year, .d2 > .film, .d2 > .avg, .d1 > .age, .d1 > .actor {
     flex-grow: 1;
     max-width: 15%;
   }
 
-  .movie-list > .caption, .genre-list > .caption, .d2 > .caption {
+  .movie-list > .caption, .genre-list > .caption, .d2 > .caption, .d1 > .caption {
     font-weight: bold;
     font-size:   16px;
   }
